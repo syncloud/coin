@@ -93,7 +93,10 @@ if __name__=='__main__':
     parser = get_parser()
     args = parser.parse_args()
 
-    download_dir = join(tempfile.gettempdir(), 'coin.cache')
+    temp_dir = tempfile.gettempdir()
+    if temp_dir is None:
+        temp_dir = os.getcwd()
+    download_dir = join(temp_dir, 'coin.cache')
     if not exists(download_dir):
         makedirs(download_dir)
 
