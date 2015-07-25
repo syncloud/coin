@@ -11,8 +11,11 @@ print(version)
 setup(
     name='coin',
     version=version,
+    py_modules = ['coin'],
     install_requires=requirements,
     scripts=['coin'],
+    description='Copy Installer',
+    license='GPLv3',
     author='Syncloud',
     author_email='support@syncloud.it',
     url='https://github.com/syncloud/coin'

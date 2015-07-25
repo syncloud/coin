@@ -1,4 +1,4 @@
-include version coin LICENSE
+include version coin coin.py LICENSE
 
 global-exclude *.pyc
 global-exclude .gitignore
