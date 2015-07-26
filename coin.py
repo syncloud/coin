@@ -128,7 +128,7 @@ def install_python_package(cache_dir, cache_folder, url_or_path, ignore_cache, d
 
 def just_unpack(archive_path, unpack_dir):
     path, filename = split(archive_path)
-    if filename.endswith('.tar.gz'):
+    if filename.endswith('.tar.gz') or filename.endswith('.tar.bz2'):
         tarfile.open(archive_path).extractall(unpack_dir)
     if filename.endswith('.zip'):
         with zipfile.ZipFile(archive_path, "r") as z:
