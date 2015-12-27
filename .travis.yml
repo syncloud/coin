@@ -11,7 +11,12 @@ deploy:
   user: syncloud-build
   password:
     secure: xGlBE2JmZOGjRzBJLSP5KXKoldnSt2Yg+zB6T8lIGV8JxYUj1hPUjOIrLHibJ+bjUEXOkaV43IVGVGwBRVlTjP8fg/T4sg0vUcdGc8aVmPX1Fwxp5IxVs3ggYM2JxfDnSeMuRZpwcjoYd/Us5+guoFOHvizKVFUk6YsXAg51lL//koTbjdG2wPdhj1SE+sIFcgAdH4R8mt063TCFEM8+KIeJysZhvXVJ7BV8zKfn3T44mCryy67jc5hWr3GJ3AS/nifIcs8BdBuwT4gl/KB0sv3nianH8oTfT7QXFv9bzzDL4pV7DcqboPC5WpH4fouxdKRl2JjcQcb4jD01FWWIgbDeaQNR88E7NW7splMYj/vlhh3FMSbORK8O8uJq3nhClZfa5EY6iAyTzx4r46LpdzcwtmK+Bu7cxhqhTXO5HL0K46rvyO9uo9SpGmJbfK8AoA+x6HnBYTJgv7MnUsl6kuneEZicjw8YJT8qjSuG/H/6HaYb22rOt2hPa+pTPqSvyHp32iJ0nkQBAgF1zLu/X9SrJhKhnmSVF4mE8YfbqK0texslwMWnbdsZrfBS1qYURTXxt3owmh2yFoBFsg8aCupu5ikOJWZMy8SlmVrg8zPbHPcQ1raO5gCE6Gk+jrpLRN73mWLgZUvsBK6LaVk6qJaOshLcIKBERzoVPgfssOY=
+env:
+- DEVTOOLS_REPO=https://raw.githubusercontent.com/syncloud/dev-tools/master
 after_deploy:
-- pip install travis-tools
-- version-increment version
-- universal-version-push version ${TRAVIS_REPO_SLUG} syncloud-build GH_TOKEN ${TRAVIS_BRANCH} "Travis build [skip ci]"
+- wget ${DEVTOOLS_REPO}/version-increment
+- chmod +x version-increment
+- wget ${DEVTOOLS_REPO}/version-push
+- chmod +x version-push
+- ./version-increment version
+- ./universal-version-push version ${TRAVIS_REPO_SLUG} syncloud-build GH_TOKEN ${TRAVIS_BRANCH} "Travis build [skip ci]"
