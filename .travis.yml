@@ -19,4 +19,4 @@ after_deploy:
 - wget ${DEVTOOLS_REPO}/version-push
 - chmod +x version-push
 - ./version-increment version
-- ./universal-version-push version ${TRAVIS_REPO_SLUG} syncloud-build GH_TOKEN ${TRAVIS_BRANCH} "Travis build [skip ci]"
+- ./version-push version ${TRAVIS_REPO_SLUG} syncloud-build GH_TOKEN ${TRAVIS_BRANCH} "Travis build [skip ci]"
