@@ -8,6 +8,8 @@ import tarfile
 import zipfile
 from os.path import basename, join, isdir, exists, split
 
+import subprocess
+
 def remove(path):
     if exists(path):
         if isdir(path):
@@ -164,5 +166,45 @@ def install_raw_package(cache_dir, cache_folder, url_or_path, ignore_cache, dest
     copy_dir(unpack_dir, install_to)
     print("Copied to: %s" % install_to)
 
+
+########## End of Raw packages related code
+
+
+########## Debian packages related code
+
+def dpkg_extract(archive_path, unpack_dir):
+    subprocess.check_output(['dpkg', '-x', archive_path, unpack_dir])
+
+def unpack_deb(archive_path, subfolder):
+    temp_dir = tempfile.mkdtemp()
+
+    unpack_dir = temp_dir
+    if subfolder is not None:
+        unpack_dir = join(temp_dir, subfolder)
+    dpkg_extract(archive_path, unpack_dir)
+
+    subdirs = os.listdir(temp_dir)
+    if len(subdirs) != 1:
+        raise Exception('Package %s is expected to contain one folder inside' % archive_path)
+    subdir = subdirs[0]
+
+    package_dir = join(temp_dir, subdir)
+    return package_dir
+
+def install_deb_package(cache_dir, cache_folder, url_or_path, ignore_cache, destination, subfolder):
+    package_path = url_or_path
+    if not exists(url_or_path):
+        download_dir = get_package_cache_folder_path(cache_dir, cache_folder)
+        package_path = download_package(download_dir, url_or_path, ignore_cache)
+    print("Package file: %s" % package_path)
+
+    unpack_dir = unpack_deb(package_path, subfolder)
+    print("Unpacked to: %s" % unpack_dir)
+
+    install_to = destination
+    copy_dir(unpack_dir, install_to)
+    print("Copied to: %s" % install_to)
+
+    pass
 
 ########## End of Raw packages related code
