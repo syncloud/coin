@@ -123,6 +123,10 @@ def install_python_package(cache_dir, cache_folder, url_or_path, ignore_cache, d
     copy_dir(unpack_dir, install_to)
     print("Copied to: %s" % install_to)
 
+    shutil.rmtree(unpack_dir, ignore_errors=True)
+    print("Cleaned unpack dir: %s" % unpack_dir)
+
+
 ########## End of Python packages related code
 
 
@@ -166,6 +170,8 @@ def install_raw_package(cache_dir, cache_folder, url_or_path, ignore_cache, dest
     copy_dir(unpack_dir, install_to)
     print("Copied to: %s" % install_to)
 
+    shutil.rmtree(unpack_dir, ignore_errors=True)
+    print("Cleaned unpack dir: %s" % unpack_dir)
 
 ########## End of Raw packages related code
 
@@ -205,6 +211,7 @@ def install_deb_package(cache_dir, cache_folder, url_or_path, ignore_cache, dest
     copy_dir(unpack_dir, install_to)
     print("Copied to: %s" % install_to)
 
-    pass
+    shutil.rmtree(unpack_dir, ignore_errors=True)
+    print("Cleaned unpack dir: %s" % unpack_dir)
 
 ########## End of Raw packages related code
