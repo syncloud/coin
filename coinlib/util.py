@@ -39,10 +39,14 @@ def download_package(download_dir, package_url, ignore_cache):
     return download_path
 
 
-def get_package_cache_folder_path(cache_dir, cache_folder):
+def get_package_cache_folder_path(cache_dir, cache_folder=None):
+    if not cache_dir:
+        cache_dir = get_cache_dir()
     download_dir = cache_dir
     if cache_folder is not None:
         download_dir = join(download_dir, cache_folder)
+    if not exists(download_dir):
+        os.mkdir(download_dir)
     return download_dir
 
 

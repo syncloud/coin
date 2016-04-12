@@ -18,25 +18,23 @@ def just_unpack(archive_path, unpack_dir):
 
 def unpack_raw(archive_path, download_dir, sub_folder):
 
-    temp_dir = download_dir
-
-    unpack_dir = temp_dir
+    unpack_dir = download_dir
     if sub_folder is not None:
-        unpack_dir = join(temp_dir, sub_folder)
+        unpack_dir = join(download_dir, sub_folder)
     just_unpack(archive_path, unpack_dir)
 
-    sub_dirs = os.listdir(temp_dir)
+    sub_dirs = os.listdir(download_dir)
     if len(sub_dirs) != 1:
-        raise Exception('Package %s is expected to contain one folder inside' % archive_path)
+        raise Exception('Package {0} is expected to contain one folder inside {1}'.format(archive_path, download_dir))
     subdir = sub_dirs[0]
 
-    package_dir = join(temp_dir, subdir)
+    package_dir = join(download_dir, subdir)
     return package_dir
 
 
-def install_raw_package(cache_dir, cache_folder, url_or_path, ignore_cache, destination, sub_folder):
+def install_raw_package(cache_folder, url_or_path, ignore_cache, destination, sub_folder):
     package_path = url_or_path
-    download_dir = get_package_cache_folder_path(cache_dir, cache_folder)
+    download_dir = get_package_cache_folder_path(cache_folder, sub_folder)
     if not exists(url_or_path):
         package_path = download_package(download_dir, url_or_path, ignore_cache)
     print("Package file: %s" % package_path)
@@ -44,9 +42,5 @@ def install_raw_package(cache_dir, cache_folder, url_or_path, ignore_cache, dest
     unpack_dir = unpack_raw(package_path, download_dir, sub_folder)
     print("Unpacked to: %s" % unpack_dir)
 
-    install_to = destination
-    copy_dir(unpack_dir, install_to)
-    print("Copied to: %s" % install_to)
-
-    shutil.rmtree(unpack_dir, ignore_errors=True)
-    print("Cleaned unpack dir: %s" % unpack_dir)
+    copy_dir(unpack_dir, destination)
+    print("Copied to: %s" % destination)

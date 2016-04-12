@@ -6,7 +6,6 @@ import os
 from coinlib.debian import install_deb_package
 from coinlib.python import install_python_package
 from coinlib.raw import install_raw_package
-from coinlib.util import get_cache_dir
 
 
 def get_parser():
@@ -35,13 +34,11 @@ if __name__ == '__main__':
     parser = get_parser()
     args = parser.parse_args()
 
-    cache_dir = get_cache_dir()
-
     if args.action == 'py':
-        install_python_package(cache_dir, args.cache_folder, args.url, args.ignore_cache, args.to)
+        install_python_package(args.cache_folder, args.url, args.ignore_cache, args.to)
 
     if args.action == 'raw':
-        install_raw_package(cache_dir, args.cache_folder, args.url, args.ignore_cache, args.to, args.subfolder)
+        install_raw_package(args.cache_folder, args.url, args.ignore_cache, args.to, args.subfolder)
 
     if args.action == 'deb':
-        install_deb_package(cache_dir, args.cache_folder, args.url, args.ignore_cache, args.to, args.subfolder)
+        install_deb_package(args.cache_folder, args.url, args.ignore_cache, args.to, args.subfolder)
