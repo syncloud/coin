@@ -46,7 +46,7 @@ def get_package_cache_folder_path(cache_dir, cache_folder=None):
     if cache_folder is not None:
         download_dir = join(download_dir, cache_folder)
     if not exists(download_dir):
-        os.mkdir(download_dir)
+        makedirs(download_dir)
     return download_dir
 
 
