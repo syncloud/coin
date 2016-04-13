@@ -10,7 +10,7 @@ cache_dir = join(DIR, 'cache.dir')
 
 @pytest.fixture(scope="function")
 def fun_setup(request):
-    if exists(cache_fir):
+    if exists(cache_dir):
         shutil.rmtree(cache_dir)
 
 def test_install_raw_package_explicit_cache():
