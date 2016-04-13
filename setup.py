@@ -8,6 +8,7 @@ requirements = [
 version = open(join(dirname(__file__), 'version')).read().strip()
 print(version)
 
+
 setup(
     name='coin',
     version=version,
