@@ -13,13 +13,16 @@ def dpkg_extract(archive_path, unpack_dir):
 
 
 def unpack_deb(archive_path, download_dir, sub_folder):
-    unpack_dir = download_dir
-    if sub_folder is not None:
+    
+    if not sub_folder:
         unpack_dir = join(download_dir, sub_folder)
+    else:
+        unpack_dir = join(download_dir, 'output')
+        
     dpkg_extract(archive_path, unpack_dir)
 
     if not sub_folder:
-        sub_dirs = os.listdir(download_dir)
+        sub_dirs = os.listdir(unpack_dir)
         if len(sub_dirs) != 1:
             raise Exception('Package %s is expected to contain one folder inside' % archive_path)
         subdir = sub_dirs[0]
