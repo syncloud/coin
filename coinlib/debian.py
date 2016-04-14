@@ -14,7 +14,7 @@ def dpkg_extract(archive_path, unpack_dir):
 
 def unpack_deb(archive_path, download_dir, sub_folder):
     
-    if not sub_folder:
+    if sub_folder:
         unpack_dir = join(download_dir, sub_folder)
     else:
         unpack_dir = join(download_dir, 'output')
