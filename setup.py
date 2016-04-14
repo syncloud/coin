@@ -12,7 +12,7 @@ print(version)
 setup(
     name='coin',
     version=version,
-    py_modules=['coinlib/debian', 'coinlib/python', 'coinlib/raw', 'coinlib/util'],
+    py_modules=['coinlib.debian', 'coinlib.python', 'coinlib.raw', 'coinlib.util'],
     install_requires=requirements,
     scripts=['coin'],
     description='Copy Installer',
