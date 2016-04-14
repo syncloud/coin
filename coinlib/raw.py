@@ -22,11 +22,14 @@ def unpack_raw(archive_path, download_dir, sub_folder):
     if sub_folder is not None:
         unpack_dir = join(download_dir, sub_folder)
     just_unpack(archive_path, unpack_dir)
-
-    sub_dirs = os.listdir(download_dir)
-    if len(sub_dirs) != 1:
-        raise Exception('Package {0} is expected to contain one folder inside {1}'.format(archive_path, download_dir))
-    subdir = sub_dirs[0]
+    
+    if not sub_folder:
+        sub_dirs = os.listdir(download_dir)
+        if len(sub_dirs) != 1:
+            raise Exception('Package {0} is expected to contain one folder inside {1}'.format(archive_path, download_dir))
+        subdir = sub_dirs[0]
+    else:
+        subdir = sub_folder
 
     package_dir = join(download_dir, subdir)
     return package_dir
