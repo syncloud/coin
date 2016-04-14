@@ -41,7 +41,7 @@ def download_package(download_dir, package_url, ignore_cache):
     return download_path
 
 
-def get_package_cache_folder_path(cache_dir=None, url_or_path):
+def get_package_cache_folder_path(cache_dir, url_or_path):
     if not cache_dir:
         cache_dir = get_default_cache_dir()
 
