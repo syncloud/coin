@@ -6,7 +6,7 @@ from os import makedirs, getcwd
 from os.path import basename, join, isdir, exists, split
 
 def generate_unpack_dirname(url_or_path):
-    return url_or_path.replace(':', '_').replace('/', '_')
+    return url_or_path.replace(':', '_').replace('/', '_').replace('.', '_')
 
 
 def remove(path):
