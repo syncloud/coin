@@ -27,7 +27,7 @@ def unpack_python_whl(whl_path, download_dir):
 
 
 def unpack_python_sources(archive_path, download_dir):
-    unpack_dir = download_dir
+    unpack_dir = join(download_dir, 'output')
     path, filename = split(archive_path)
     if filename.endswith('.tar.gz'):
         tarfile.open(archive_path).extractall(unpack_dir)
