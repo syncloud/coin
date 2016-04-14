@@ -65,7 +65,7 @@ def get_python_unpack_function(filename):
 
 def install_python_package(cache_folder, url_or_path, ignore_cache, destination):
     package_path = url_or_path
-    download_dir = get_package_cache_folder_path(cache_folder)
+    download_dir = get_package_cache_folder_path(cache_folder, url_or_path)
     if not exists(url_or_path):
         package_path = download_package(download_dir, url_or_path, ignore_cache)
     path, filename = split(package_path)
