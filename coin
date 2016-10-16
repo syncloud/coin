@@ -22,6 +22,7 @@ def get_parser():
     sub = subparsers.add_parser('raw', help="Install raw archive")
     sub.add_argument('url', help='Archive url')
     sub.add_argument('--subfolder', help='Folder to put all contents of archive', default=None)
+    sub.add_argument('--takefolder', help='Folder to take from archive', default=None)
 
     sub = subparsers.add_parser('deb', help="Install Debian package")
     sub.add_argument('url', help='Package url')
@@ -38,7 +39,7 @@ if __name__ == '__main__':
         install_python_package(args.cache_folder, args.url, args.ignore_cache, args.to)
 
     if args.action == 'raw':
-        install_raw_package(args.cache_folder, args.url, args.ignore_cache, args.to, args.subfolder)
+        install_raw_package(args.cache_folder, args.url, args.ignore_cache, args.to, args.subfolder, args.takefolder)
 
     if args.action == 'deb':
         install_deb_package(args.cache_folder, args.url, args.ignore_cache, args.to, args.subfolder)

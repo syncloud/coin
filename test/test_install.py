@@ -18,7 +18,7 @@ def test_install_raw_package_explicit_cache():
     url_or_path = join(DIR, 'data', 'test.tar.gz')
     destination = join(DIR, 'install')
 
-    install_raw_package(cache_dir, url_or_path, True, destination, 'test-raw')
+    install_raw_package(cache_dir, url_or_path, True, destination, 'test-raw', None)
 
 
 def test_install_raw_package_default_cache():
@@ -26,7 +26,7 @@ def test_install_raw_package_default_cache():
     url_or_path = join(DIR, 'data', 'test.tar.gz')
     destination = join(DIR, 'install')
 
-    install_raw_package(None, url_or_path, True, destination, 'test-raw')
+    install_raw_package(None, url_or_path, True, destination, 'test-raw', None)
 
 def test_install_python_package_explicit_cache():
 
