@@ -26,7 +26,8 @@ def unpack_raw(archive_path, download_dir, sub_folder, take_folder):
     just_unpack(archive_path, unpack_dir)
     
     if not sub_folder:
-        if not take_folder:
+        subdir = take_folder
+        if not subdir:
             sub_dirs = os.listdir(unpack_dir)
             if len(sub_dirs) != 1:
                 raise Exception('Package {0} is expected to contain one folder'.format(archive_path))
