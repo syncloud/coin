@@ -4,6 +4,7 @@ import urllib
 import urlparse
 from os import makedirs, getcwd
 from os.path import basename, join, isdir, exists, split
+from subprocess import check_output
 
 def generate_unpack_dirname(url_or_path):
     return url_or_path.replace(':', '_').replace('/', '_').replace('.', '_')
@@ -16,14 +17,15 @@ def remove(path):
         else:
             os.remove(path)
 
-
-def copy_dir(src, to):
+def copy_dir(src, to, hardlinks=True):
     path, folder_name = split(src)
     target = join(to, folder_name)
     if exists(target):
         shutil.rmtree(target)
-    shutil.copytree(src, target)
-
+    hardlinks_arg = ''
+    if hardlinks:
+        hardlinks_arg = ' -a'
+    print(check_output('cp{0} {1} {2}'.format(hardlinks_arg, src, target), shell=True))
 
 def download_package(download_dir, package_url, ignore_cache):
     filename = basename(urlparse.urlparse(package_url).path)
