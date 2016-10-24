@@ -1,4 +1,5 @@
-from os.path import dirname, join
+from os.path import dirname, join, exists
+import shutil
 
 from coinlib.debian import install_deb_package
 from coinlib.python import install_python_package

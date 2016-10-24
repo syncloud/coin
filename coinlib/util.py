@@ -3,7 +3,7 @@ import shutil
 import urllib
 import urlparse
 from os import makedirs, getcwd
-from os.path import basename, join, isdir, exists, split
+from os.path import basename, join, isdir, exists, split, dirname
 from subprocess import check_output
 
 def generate_unpack_dirname(url_or_path):
@@ -22,6 +22,9 @@ def copy_dir(src, to, hardlinks=True):
     target = join(to, folder_name)
     if exists(target):
         shutil.rmtree(target)
+    target_parent = dirname(target)
+    if not exists(target_parent):
+        makedirs(target_parent)
     hardlinks_arg = ''
     if hardlinks:
         hardlinks_arg = ' -a'
