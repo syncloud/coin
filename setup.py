@@ -2,7 +2,7 @@ from setuptools import setup
 from os.path import join, dirname
 
 requirements = [
-    'urllib3==1.7.1'
+    'urllib3==1.24.2'
 ]
 
 version = open(join(dirname(__file__), 'version')).read().strip()
